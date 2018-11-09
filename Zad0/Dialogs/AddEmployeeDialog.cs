@@ -22,14 +22,15 @@ namespace Zad0.Dialogs
         private void button1_Click(object sender, EventArgs e)
         {
             DataRow newRow = table.NewRow();
-            newRow["EmployeeID"] = 12;
-            newRow["MName"] = "asdad";
-            newRow["PriorSalary"] = 600;
-            newRow["FName"] = textBox1.Text.Count() == 0 ? null : textBox1.Text;
-            newRow["LName"] = textBox2.Text.Count() == 0 ? null : textBox2.Text;
-            newRow["TerminationDate"] = textBox3.Text.Count() == 0 ? null : textBox3.Text;
-            newRow["Salary"] = textBox4.Text.Count() == 0 ? null : textBox4.Text;
-            newRow["HireDate"] = textBox5.Text.Count() == 0 ? null : textBox5.Text;
+            newRow["EmployeeID"] = textBox1.Text.Count() == 0 ? null : textBox1.Text;
+            newRow["FName"] = textBox2.Text.Count() == 0 ? null : textBox2.Text;
+            newRow["LName"] = textBox3.Text.Count() == 0 ? null : textBox3.Text;
+            newRow["MName"] = textBox4.Text.Count() == 0 ? null : textBox4.Text;
+            newRow["Salary"] = textBox5.Text.Count() == 0 ? null : textBox5.Text;
+            newRow["PriorSalary"] = textBox6.Text.Count() == 0 ? null : textBox6.Text;
+            newRow["HireDate"] = textBox7.Text.Count() == 0 ? null : textBox7.Text;
+            newRow["ManagerEmpID"] = textBox8.Text.Count() == 0 ? null : textBox8.Text;
+
             try
             {
                 table.Rows.Add(newRow);
@@ -44,5 +45,7 @@ namespace Zad0.Dialogs
                 this.Close();
             }
         }
+
+
     }
 }

@@ -15,7 +15,7 @@ namespace Zad0
     public partial class Form1 : Form
     {
         string connectionString = @"Data Source=WKS456\SQLEXPRESS;Initial Catalog=ShopDB;Integrated Security=True";
-        string commandString = "SELECT * FROM Customers; SELECT * FROM Orders; SELECT * FROM OrderDetails;SELECT * FROM Products; SELECT * FROM Employees";
+        string commandString = "SELECT * FROM Customers; SELECT * FROM Orders; SELECT * FROM OrderDetails;SELECT * FROM Products; SELECT * FROM Employees;";
         SqlDataAdapter adapter;
         SqlCommandBuilder commandBuilder;
 
@@ -39,16 +39,16 @@ namespace Zad0
             CenterToScreen();
 
                 adapter = new SqlDataAdapter(commandString, connectionString);
-
-                adapter.Fill(shopDB);
+                 adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+                  adapter.Fill(shopDB);
                 customers = shopDB.Tables[0];
                 orders = shopDB.Tables[1];
                 orderDetails = shopDB.Tables[2];
                 products = shopDB.Tables[3];
                 employees = shopDB.Tables[4];
                 dataGridView1.ReadOnly = true;
-            dataGridView2.ReadOnly = true;
-            dataGridView1.DataSource = customers;
+                dataGridView2.ReadOnly = true;
+                dataGridView1.DataSource = customers;
                 dataGridView2.DataSource = employees;
 
         }
@@ -70,8 +70,24 @@ namespace Zad0
             commandBuilder = new SqlCommandBuilder(adapter);
             adapter.Update(employees);
             employees.Clear();
-            adapter.Fill(shopDB);
+            adapter.Fill(shopDB); 
 
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var editDialog = new EditCustomerDialog(customers, (dataGridView1.CurrentRow.DataBoundItem as DataRowView).Row);
+            editDialog.ShowDialog();
+            adapter.Update(customers);
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           // var editDialog = new EditEmployeeDialog(employees, (dataGridView2.CurrentRow.DataBoundItem as DataRowView).Row);
+            //editDialog.ShowDialog();
+            //adapter.Update(employees);
 
         }
     }

@@ -57,6 +57,18 @@
     <Compile Include="Dialogs\AddEmployeeDialog.Designer.cs">
       <DependentUpon>AddEmployeeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\EditCustomerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditCustomerDialog.Designer.cs">
+      <DependentUpon>EditCustomerDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditEmployeeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditEmployeeDialog.Designer.cs">
+      <DependentUpon>EditEmployeeDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +82,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AddEmployeeDialog.resx">
       <DependentUpon>AddEmployeeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditCustomerDialog.resx">
+      <DependentUpon>EditCustomerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditEmployeeDialog.resx">
+      <DependentUpon>EditEmployeeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
