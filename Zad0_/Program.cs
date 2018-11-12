@@ -9,8 +9,8 @@ namespace Zad0_
          
         static void Main(string[] args)
         {
-            string connectionString = @"Data Source=WKS456\SQLEXPRESS;Initial Catalog=ShopDB;Integrated Security=True";
-            string sql = "Select * FROM customers; Select * FROM Employees;";
+            string connectionString = @"Data Source=МИХАИЛ-ПК\MSSQLSERVER1;Initial Catalog=ShopDB;Integrated Security=True";
+            string sql = " Select * FROM Employees;";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -18,17 +18,17 @@ namespace Zad0_
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
 
-                DataTable customers = ds.Tables[0];
-                DataTable employees = ds.Tables[1];
-               // добавим новую строку
-               DataRow newRow = customers.NewRow();
-                newRow["FName"] = "x";
-                newRow["LName"] = "x";
-                newRow["Address1"] = "x";
-                newRow["City"] = "x";
-                newRow["Phone"] = "x";
+                DataTable employees = ds.Tables[0];
+               // DataTable employees = ds.Tables[1];
+               //// добавим новую строку
+               //DataRow newRow = customers.NewRow();
+               // newRow["FName"] = "x";
+               // newRow["LName"] = "x";
+               // newRow["Address1"] = "x";
+               // newRow["City"] = "x";
+               // newRow["Phone"] = "x";
 
-                customers.Rows.Add(newRow);
+               // customers.Rows.Add(newRow);
 
 
 

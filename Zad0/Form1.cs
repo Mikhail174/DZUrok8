@@ -14,18 +14,17 @@ namespace Zad0
 {
     public partial class Form1 : Form
     {
-        string connectionString = @"Data Source=WKS456\SQLEXPRESS;Initial Catalog=ShopDB;Integrated Security=True";
-        string commandString = "SELECT * FROM Customers; SELECT * FROM Orders; SELECT * FROM OrderDetails;SELECT * FROM Products; SELECT * FROM Employees;";
-        SqlDataAdapter adapter;
+        string connectionString = @"Data Source=МИХАИЛ-ПК\MSSQLSERVER1;Initial Catalog=ShopDB;Integrated Security=True";
+        string commandString1 = "SELECT * FROM Customers";
+        string commandString2 = "SELECT * FROM Employees";
+
+        SqlDataAdapter adapter1;
+        SqlDataAdapter adapter2;
         SqlCommandBuilder commandBuilder;
+        DataSet shopDB = new DataSet();
 
 
-
-        DataSet shopDB = new DataSet("ShopDB");
         DataTable customers;
-        DataTable orders;
-        DataTable orderDetails;
-        DataTable products;
         DataTable employees;
 
         public Form1()
@@ -38,57 +37,104 @@ namespace Zad0
         {
             CenterToScreen();
 
-                adapter = new SqlDataAdapter(commandString, connectionString);
-                 adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-                  adapter.Fill(shopDB);
-                customers = shopDB.Tables[0];
-                orders = shopDB.Tables[1];
-                orderDetails = shopDB.Tables[2];
-                products = shopDB.Tables[3];
-                employees = shopDB.Tables[4];
-                dataGridView1.ReadOnly = true;
-                dataGridView2.ReadOnly = true;
-                dataGridView1.DataSource = customers;
-                dataGridView2.DataSource = employees;
+            adapter1 = new SqlDataAdapter(commandString1, connectionString);
+            adapter1.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            adapter1.TableMappings.Add("Table", "Customers");
+            adapter1.Fill(shopDB, "Customers");
+            customers = shopDB.Tables["Customers"];
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = customers;
 
+
+            adapter2 = new SqlDataAdapter(commandString2, connectionString);
+            adapter2.TableMappings.Add("Table", "Employees");
+            
+            adapter2.Fill(shopDB, "Employees");
+            employees = shopDB.Tables["Employees"];
+
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = employees;
         }
         
 
         public void button1_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.DialogResult result = new AddCustomerDialog(customers).ShowDialog();
-            commandBuilder = new SqlCommandBuilder(adapter);
-            adapter.Update(customers);
+            commandBuilder = new SqlCommandBuilder(adapter1);
+            adapter1.UpdateCommand = commandBuilder.GetUpdateCommand();
+            adapter1.Update(shopDB,"Customers");
             customers.Clear();
-            adapter.Fill(shopDB);
+            adapter1.Fill(shopDB);
 
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            System.Windows.Forms.DialogResult result = new AddEmployeeDialog(employees).ShowDialog();
-            commandBuilder = new SqlCommandBuilder(adapter);
-            adapter.Update(employees);
-            employees.Clear();
-            adapter.Fill(shopDB); 
 
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var editDialog = new EditCustomerDialog(customers, (dataGridView1.CurrentRow.DataBoundItem as DataRowView).Row);
+            var editDialog = new EditCustomerDialog(customers,(dataGridView1.CurrentRow.DataBoundItem as DataRowView).Row);
             editDialog.ShowDialog();
-            adapter.Update(customers);
+            commandBuilder = new SqlCommandBuilder(adapter1);
+            adapter1.UpdateCommand = commandBuilder.GetUpdateCommand();
+            adapter1.Update(shopDB, "Customers");
+            customers.Clear();
+            adapter1.Fill(shopDB);
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Вы уверены что хотите удалить этого клиента?", "DeleteDialog", MessageBoxButtons.OKCancel);
+
+            if (res == System.Windows.Forms.DialogResult.OK)
+            {
+                var rowToDelete = (dataGridView1.CurrentRow.DataBoundItem as DataRowView).Row;
+                rowToDelete.Delete();
+                commandBuilder = new SqlCommandBuilder(adapter1);
+                adapter1.UpdateCommand = commandBuilder.GetUpdateCommand();
+                adapter1.Update(shopDB, "Customers");
+                customers.Clear();
+                adapter1.Fill(shopDB);
+
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.DialogResult result = new AddEmployeeDialog(employees).ShowDialog();
+            commandBuilder = new SqlCommandBuilder(adapter2);
+          //  adapter2.UpdateCommand = commandBuilder.GetUpdateCommand();
+            adapter2.Update(shopDB,"Employees");
+            employees.Clear();
+            adapter2.Fill(shopDB);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-           // var editDialog = new EditEmployeeDialog(employees, (dataGridView2.CurrentRow.DataBoundItem as DataRowView).Row);
-            //editDialog.ShowDialog();
-            //adapter.Update(employees);
+            var editDialog = new EditEmployeeDialog(employees, (dataGridView2.CurrentRow.DataBoundItem as DataRowView).Row);
+            editDialog.ShowDialog();
+            commandBuilder = new SqlCommandBuilder(adapter2);
+            adapter2.UpdateCommand = commandBuilder.GetUpdateCommand();
+            adapter2.Update(shopDB, "Employees");
+            employees.Clear();
+            adapter2.Fill(shopDB);
+        }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Вы уверены что хотите удалить этого клиента?", "DeleteDialog", MessageBoxButtons.OKCancel);
+
+            if (res == System.Windows.Forms.DialogResult.OK)
+            {
+                var rowToDelete = (dataGridView2.CurrentRow.DataBoundItem as DataRowView).Row;
+                rowToDelete.Delete();
+                commandBuilder = new SqlCommandBuilder(adapter2);
+                adapter2.UpdateCommand = commandBuilder.GetUpdateCommand();
+                adapter2.Update(shopDB, "Employees");
+                employees.Clear();
+                adapter2.Fill(shopDB);
+
+            }
         }
     }
 }

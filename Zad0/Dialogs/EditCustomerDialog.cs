@@ -35,5 +35,14 @@ namespace Zad0.Dialogs
             this.Close();
 
         }
+
+        private void EditCustomerDialog_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = rowToEdit["FName"].ToString();
+            textBox2.Text = rowToEdit["LName"].ToString();
+            textBox3.Text = rowToEdit["Address1"].ToString();
+            textBox4.Text = rowToEdit["City"].ToString();
+            textBox5.Text = rowToEdit["Phone"].ToString();
+        }
     }
 }

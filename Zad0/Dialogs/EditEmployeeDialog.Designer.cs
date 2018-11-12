@@ -30,6 +30,12 @@
         {
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -41,12 +47,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,6 +83,54 @@
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Customer info";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 204);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(78, 13);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "ManageEmpID";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(10, 178);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "HireDate";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 152);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "PriorSalary";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(115, 204);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(133, 20);
+            this.textBox8.TabIndex = 23;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(115, 178);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(133, 20);
+            this.textBox7.TabIndex = 22;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(115, 152);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(133, 20);
+            this.textBox6.TabIndex = 22;
             // 
             // textBox5
             // 
@@ -172,54 +220,7 @@
             this.button1.TabIndex = 19;
             this.button1.Text = "Ok";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(115, 152);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(133, 20);
-            this.textBox6.TabIndex = 22;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(115, 178);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(133, 20);
-            this.textBox7.TabIndex = 22;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(115, 204);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(133, 20);
-            this.textBox8.TabIndex = 23;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 152);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "PriorSalary";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 178);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 13);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "HireDate";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 204);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(78, 13);
-            this.label8.TabIndex = 25;
-            this.label8.Text = "ManageEmpID";
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // EditEmployeeDialog
             // 
@@ -231,6 +232,7 @@
             this.Controls.Add(this.button1);
             this.Name = "EditEmployeeDialog";
             this.Text = "EditEmployeeDialog";
+            this.Load += new System.EventHandler(this.EditEmployeeDialog_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
