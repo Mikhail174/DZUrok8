@@ -46,7 +46,7 @@ namespace Zad2
                 }
                 finally
                 {
-                    insertedRow.Table.Columns[0].ReadOnly = true;
+                    insertedRow.Table.Columns[0].ReadOnly = true; //
                 }
             }
         }
