@@ -14,7 +14,7 @@ namespace Zad0
 {
     public partial class Form1 : Form
     {
-        string connectionString = @"Data Source=МИХАИЛ-ПК\MSSQLSERVER1;Initial Catalog=ShopDB;Integrated Security=True";
+        string connectionString = @"Data Source=WKS456\SQLEXPRESS;Initial Catalog=ShopDB;Integrated Security=True";
         string commandString1 = "SELECT * FROM Customers";
         string commandString2 = "SELECT * FROM Employees";
 
@@ -62,6 +62,7 @@ namespace Zad0
             System.Windows.Forms.DialogResult result = new AddCustomerDialog(customers).ShowDialog();
             commandBuilder = new SqlCommandBuilder(adapter1);
             adapter1.UpdateCommand = commandBuilder.GetUpdateCommand();
+            label1.Text=commandBuilder.GetUpdateCommand().CommandText;
             adapter1.Update(shopDB,"Customers");
             customers.Clear();
             adapter1.Fill(shopDB);
@@ -76,6 +77,7 @@ namespace Zad0
             editDialog.ShowDialog();
             commandBuilder = new SqlCommandBuilder(adapter1);
             adapter1.UpdateCommand = commandBuilder.GetUpdateCommand();
+            label1.Text = commandBuilder.GetUpdateCommand().CommandText;
             adapter1.Update(shopDB, "Customers");
             customers.Clear();
             adapter1.Fill(shopDB);
@@ -92,6 +94,7 @@ namespace Zad0
                 rowToDelete.Delete();
                 commandBuilder = new SqlCommandBuilder(adapter1);
                 adapter1.UpdateCommand = commandBuilder.GetUpdateCommand();
+                label1.Text = commandBuilder.GetUpdateCommand().CommandText;
                 adapter1.Update(shopDB, "Customers");
                 customers.Clear();
                 adapter1.Fill(shopDB);
@@ -103,7 +106,8 @@ namespace Zad0
         {
             System.Windows.Forms.DialogResult result = new AddEmployeeDialog(employees).ShowDialog();
             commandBuilder = new SqlCommandBuilder(adapter2);
-          //  adapter2.UpdateCommand = commandBuilder.GetUpdateCommand();
+            adapter2.UpdateCommand = commandBuilder.GetUpdateCommand();
+            label2.Text = commandBuilder.GetUpdateCommand().CommandText;
             adapter2.Update(shopDB,"Employees");
             employees.Clear();
             adapter2.Fill(shopDB);
@@ -115,6 +119,7 @@ namespace Zad0
             editDialog.ShowDialog();
             commandBuilder = new SqlCommandBuilder(adapter2);
             adapter2.UpdateCommand = commandBuilder.GetUpdateCommand();
+            label2.Text = commandBuilder.GetUpdateCommand().CommandText;
             adapter2.Update(shopDB, "Employees");
             employees.Clear();
             adapter2.Fill(shopDB);
@@ -130,6 +135,7 @@ namespace Zad0
                 rowToDelete.Delete();
                 commandBuilder = new SqlCommandBuilder(adapter2);
                 adapter2.UpdateCommand = commandBuilder.GetUpdateCommand();
+                label2.Text = commandBuilder.GetUpdateCommand().CommandText;
                 adapter2.Update(shopDB, "Employees");
                 employees.Clear();
                 adapter2.Fill(shopDB);
