@@ -82,7 +82,7 @@ namespace Zad2
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message); //
+                MessageBox.Show(ex.Message); ////
             }
         }
     }
