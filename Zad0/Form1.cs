@@ -14,7 +14,7 @@ namespace Zad0
 {
     public partial class Form1 : Form
     {
-        string connectionString = @"Data Source=WKS456\SQLEXPRESS;Initial Catalog=ShopDB;Integrated Security=True";
+        string connectionString = @"Data Source=МИХАИЛ-ПК\MSSQLSERVER1;Initial Catalog=ShopDB;Integrated Security=True";
         string commandString1 = "SELECT * FROM Customers";
         string commandString2 = "SELECT * FROM Employees";
 
